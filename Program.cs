@@ -1,4 +1,4 @@
-﻿using System.Data.Common;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq.Expressions;
@@ -15,23 +15,27 @@ void testEncryption()
     Debug.Assert(EncryptMessage("abcd","bc") == "bddf");
 }
 
-static string EncryptMessage(string message, string key)
+string EncryptMessage(string message, string key)
 {
-    string newMessage = "";
-    int j = 0;
-    for(int i = 0; i<message.Length; i++)
+        string newMessage = "";
+        int j = 0;
+
+    if(IsValidInput(message) == true)
     {
-        Console.Write($"{j} ");
-        newMessage = newMessage + shiftChar(message[i], key[j]);
-
-        if(key.Count() > 1)
+            for(int i = 0; i<message.Length; i++)
         {
-            j ++;
-        }
+            //Console.Write($"{j} ");
+            newMessage = newMessage + shiftChar(message[i], key[j]);
 
-        if(j>key.Length-1)
-        {
-            j = 0;
+            if(key.Count() > 1)
+            {
+                j ++;
+            }
+
+            if(j>key.Length-1)
+            {
+                j = 0;
+            }
         }
     }
     return newMessage;
