@@ -20,7 +20,7 @@ string EncryptMessage(string message, string key)
         string newMessage = "";
         int j = 0;
 
-    if(IsValidInput(message) == true)
+    if(IsValidInput(message) == true && IsValidInput(key) == true)
     {
             for(int i = 0; i<message.Length; i++)
         {
